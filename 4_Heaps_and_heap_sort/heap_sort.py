@@ -4,10 +4,10 @@
 #Therefore, the overall time complexity of Heap Sort is O(n log n).
 # Heap Sort is an in-place sorting algorithm requiring O(1) space complexity.
 
-def heapify(arr, n, i):
+def max_heapify(arr, n, i):
     largest = i
     l = 2 * i + 1
-    r = 2 * i + 2
+    r = 2 * i
 
     if l < n and arr[i] < arr[l]:
         largest = l
@@ -17,21 +17,22 @@ def heapify(arr, n, i):
 
     if largest != i:
         arr[i], arr[largest] = arr[largest], arr[i]
-        heapify(arr, n, largest)
+        max_heapify(arr, n, largest)
 
 def heapSort(arr):
     n = len(arr)
 
     for i in range(n // 2 - 1, -1, -1):
-        heapify(arr, n, i)
+        max_heapify(arr, n, i)
 
     for i in range(n-1, 0, -1):
         arr[i], arr[0] = arr[0], arr[i]
-        heapify(arr, i, 0)
+        max_heapify(arr, i, 0)
 
 arr = [12, 11, 13, 5, 6, 7]
+
+max_heapify(arr, len(arr), 0)
+print(arr)
+
 heapSort(arr)
-n = len(arr)
-print("Sorted array is")
-for i in range(n):
-    print("%d" % arr[i])
+print(arr)
