@@ -1,83 +1,100 @@
 class Node:
-    def __init__(self, value):
-        self.value = value
-        self.left_child = None
-        self.right_child = None
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
         self.height = 1
 
 class AVLTree:
     def __init__(self):
         self.root = None
 
-    def insert(self, value):
-        if not self.root:
-            self.root = Node(value)
-        else:
-            self.root = self._insert(value, self.root)
+    def insert(self, key):
+        def _insert(node, key):
+            if not node:
+                return Node(key)
+            elif key < node.key:
+                node.left = _insert(node.left, key)
+            else:
+                node.right = _insert(node.right, key)
 
-    def _insert(self, value, node):
-        if not node:
-            return Node(value)
-        elif value < node.value:
-            node.left_child = self._insert(value, node.left_child)
-        else:
-            node.right_child = self._insert(value, node.right_child)
+            node.height = 1 + max(self._height(node.left), self._height(node.right))
+            balance = self._get_balance(node)
 
-        node.height = 1 + max(self.get_height(node.left_child), self.get_height(node.right_child))
+            # Left Left Case
+            if balance > 1 and key < node.left.key:
+                return self._right_rotate(node)
 
-        balance = self.get_balance(node)
+            # Right Right Case
+            if balance < -1 and key > node.right.key:
+                return self._left_rotate(node)
 
-        if balance > 1 and value < node.left_child.value:
-            return self.rotate_right(node)
+            # Left Right Case
+            if balance > 1 and key > node.left.key:
+                node.left = self._left_rotate(node.left)
+                return self._right_rotate(node)
 
-        if balance < -1 and value > node.right_child.value:
-            return self.rotate_left(node)
+            # Right Left Case
+            if balance < -1 and key < node.right.key:
+                node.right = self._right_rotate(node.right)
+                return self._left_rotate(node)
 
-        if balance > 1 and value > node.left_child.value:
-            node.left_child = self.rotate_left(node.left_child)
-            return self.rotate_right(node)
+            return node
 
-        if balance < -1 and value < node.right_child.value:
-            node.right_child = self.rotate_right(node.right_child)
-            return self.rotate_left(node)
+        self.root = _insert(self.root, key)
 
-        return node
+    def in_order_traversal(self):
+        def _in_order_traversal(node, result):
+            if node:
+                _in_order_traversal(node.left, result)
+                result.append(node.key)
+                _in_order_traversal(node.right, result)
 
-    def get_height(self, node):
+            return result
+
+        return _in_order_traversal(self.root, [])
+
+    def _height(self, node):
         if not node:
             return 0
 
         return node.height
 
-    def get_balance(self, node):
+    def _get_balance(self, node):
         if not node:
             return 0
 
-        return self.get_height(node.left_child) - self.get_height(node.right_child)
+        return self._height(node.left) - self._height(node.right)
 
-    def rotate_right(self, node):
-        new_root = node.left_child
-        node.left_child = new_root.right_child
-        new_root.right_child = node
-        node.height = 1 + max(self.get_height(node.left_child), self.get_height(node.right_child))
-        new_root.height = 1 + max(self.get_height(new_root.left_child), self.get_height(new_root.right_child))
+    def _left_rotate(self, node):
+        new_root = node.right
+        node.right = new_root.left
+        new_root.left = node
+
+        node.height = 1 + max(self._height(node.left), self._height(node.right))
+        new_root.height = 1 + max(self._height(new_root.left), self._height(new_root.right))
+
         return new_root
 
-    def rotate_left(self, node):
-        new_root = node.right_child
-        node.right_child = new_root.left_child
-        new_root.left_child = node
-        node.height = 1 + max(self.get_height(node.left_child), self.get_height(node.right_child))
-        new_root.height = 1 + max(self.get_height(new_root.left_child), self.get_height(new_root.right_child))
+    def _right_rotate(self, node):
+        new_root = node.left
+        node.left = new_root.right
+        new_root.right = node
+
+        node.height = 1 + max(self._height(node.left), self._height(node.right))
+        new_root.height = 1 + max(self._height(new_root.left), self._height(new_root.right))
+
         return new_root
 
-if __name__ == '__main__':
-    avl_tree = AVLTree()
-    avl_tree.insert(10)
-    avl_tree.insert(20)
-    avl_tree.insert(30)
-    avl_tree.insert(40)
-    avl_tree.insert(50)
-    avl_tree.insert(25)
+def avl_sort(arr):
+    tree = AVLTree()
 
-print(avl_tree)
+    for elem in arr:
+        tree.insert(elem)
+
+    return tree.in_order_traversal()
+
+
+arr = [5, 2, 7, 1, 9, 3, 8, 4, 6]
+sorted_arr = avl_sort(arr)
+print(sorted_arr)  # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
