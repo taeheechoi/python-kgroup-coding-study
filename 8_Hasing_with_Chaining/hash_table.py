@@ -156,11 +156,11 @@ ht.insert(4, 'd')
 ht.print()  # [0, [1, 'a'], [-5457085546329511295, 'kang'], [2, 'b'], [3, 'c'], [4, 'd'], 0, 0]
 
 # 3 공간 확장: Linear Probing + 공간 확장
-class HashTable:
-     def __init__(self, n):
-        self.n = n
-        self.hash_table = list([0 for i in range(n)])
+# class HashTable:
+#      def __init__(self, n):
+#         self.n = n
+#         self.hash_table = list([0 for i in range(n)])
 
-     def hash_function(self, key):
-         # Custom Hash Function
-         return key % self.n
+#      def hash_function(self, key):
+#          # Custom Hash Function
+#          return key % self.n

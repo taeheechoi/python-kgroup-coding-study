@@ -24,7 +24,7 @@ data = 'test'
 print(hash(data)) # 3149808501497212018
 print(hash_function(hash(data))) # 0
 
-data = 1
+data = 111
 print(hash(data)) # 1
 print(hash_function(hash(data))) # 1
 
