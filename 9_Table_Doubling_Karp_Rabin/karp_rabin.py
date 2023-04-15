@@ -1,7 +1,7 @@
-def karp_rabin(text, pattern):
+def karp_rabin(pattern, text):
     n = len(text)  # 텍스트 문자열의 길이
     m = len(pattern)  # 패턴 문자열의 길이
-    p = 31  # 해싱에 사용할 소수
+    # p = 31  # 해싱에 사용할 소수
     base = 256  # 입력 알파벳의 가능한 문자 수
     modulus = 10**9 + 9  # 해싱에 사용할 큰 소수
     
@@ -9,19 +9,21 @@ def karp_rabin(text, pattern):
     pattern_hash = 0
     for i in range(m):
         pattern_hash = (pattern_hash * base + ord(pattern[i])) % modulus
-        print(pattern_hash)
+
     # 텍스트 문자열의 각 부분 문자열의 해시 값을 계산합니다.
     text_hash = [0] * (n - m + 1)
-    print(text_hash)
     
     text_hash[0] = 0
     for i in range(m):
+        
         text_hash[0] = (text_hash[0] * base + ord(text[i])) % modulus
-        print('text_hash[0]', text_hash[0])
+        print('text_hash[0]', i, text[i], text_hash[0])
     
+    print('n - m + 1', n, m, n - m + 1)
     for i in range(1, n - m + 1):
+    
         text_hash[i] = ((text_hash[i-1] - ord(text[i-1]) * pow(base, m-1, modulus)) * base + ord(text[i+m-1])) % modulus
-        print(f'text_hash[{i}]', text_hash[i])
+        print(f'text_hash[{i}]', text[i-1], text[i+m-1],  text_hash[i])
     
     # 패턴 문자열과 각 부분 문자열의 해시 값을 비교합니다.
     for i in range(n - m + 1):
@@ -33,7 +35,7 @@ def karp_rabin(text, pattern):
     return -1
 
 
-print(karp_rabin('i love coding.', 'cod'))
+print(karp_rabin('co', 'i love coding'))
 
 # c: 99
 # o: 25455
