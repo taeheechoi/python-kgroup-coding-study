@@ -42,7 +42,7 @@ def karp_rabin(s, t):
     # s와 t의 해시값이 같은 위치를 찾음
     for i in range(m-n+1):
         if hash_s == hash_t:
-            if s == t[i:i+n-1]:
+            if s == t[i:i+n]:
                 return i
         rolling_hash_t.skip()
         rolling_hash_t.append(t[i+n])
