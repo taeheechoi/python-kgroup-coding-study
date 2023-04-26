@@ -8,7 +8,7 @@
 
 위상 정렬은 작업 스케줄링, 의존 관계 파악, 컴파일러 설계 등 다양한 분야에서 사용되며, 그래프 이론에서 중요한 알고리즘 중 하나이다.
 
-# Reference:
+### Reference:
 
 - https://seanprashad.com/leetcode-patterns/
 - https://www.youtube.com/watch?v=_hxFgg7TLZQ
