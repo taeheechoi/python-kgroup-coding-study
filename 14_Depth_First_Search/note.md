@@ -12,3 +12,8 @@
 
 - https://seanprashad.com/leetcode-patterns/
 - https://www.youtube.com/watch?v=_hxFgg7TLZQ
+- 프로그래머가 알아야 할 알고리즘 40
+- https://youtu.be/GC-nBgi9r0U
+- Data Structure Algorithms Python (Book)
+- O'Reilly Learning Algorithms (Book)
+- 40 Algorithms Every Programmer Should Know (Book)
