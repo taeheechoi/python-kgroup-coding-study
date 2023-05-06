@@ -6,3 +6,4 @@ V번 반복에 대해서 해당 정점과 연결되어 있는 모든 간선(E)�
 ### References
 
 - https://velog.io/@kimdukbae/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EB%B2%A8%EB%A7%8C-%ED%8F%AC%EB%93%9C-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Bellman-Ford-Algorithm
+- https://www.youtube.com/watch?v=4OQeCuLYj-4
