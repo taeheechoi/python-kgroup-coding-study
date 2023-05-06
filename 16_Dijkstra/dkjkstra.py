@@ -15,7 +15,8 @@ def dijkstra(graph, start):
         print(queue)
         # 우선순위 큐에서 현재까지 알려진 최단 거리를 가진 노드를 가져옵니다.
         current_distance, current_node = heapq.heappop(queue)
-
+        print('current_distance:', current_distance,
+              'distances[current_node]:', distances[current_node])
         # 우선순위 큐에서 꺼낸 노드가 이미 더 짧은 경로를 가지고 있다면 무시합니다.
         if current_distance > distances[current_node]:
             continue
