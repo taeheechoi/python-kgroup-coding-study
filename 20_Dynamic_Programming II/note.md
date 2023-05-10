@@ -35,12 +35,12 @@ how are you
 doing today?
 
 나쁜 정렬
-H e l l o
-W o r l d,
-H o w a r e
-y o u
-d o i n g
-t o d a y ?
+Hello
+World,
+How are
+you
+doing
+today?
 ```
 
 1. 하위 문제를 정의한다 - 하위 문제의 개수를 센다
