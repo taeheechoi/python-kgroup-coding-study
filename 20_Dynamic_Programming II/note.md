@@ -64,6 +64,16 @@ t o d a y ?
 - dp[0]
 
 ```python
+assertword_wrap(['Hello', 'world,', 'how', 'are', 'you', 'doing', 'today?'], 15) == 25
+
+# 123456789012345
+# Hello world,___    --> 3*3 (3 공백 수)
+# how are you____    ---> 4*4 (4 공백 수)
+# doing today?___    ---> 0 (마지막 줄)
+
+```
+
+```python
 def compute_cost(words, i, j, L): # 함수는 i번째 단어부터 j번째 단어까지 한 줄에 나열했을 때, 해당 줄에 들어갈 문자열의 비용을 계산하는 함수
 
     length = sum([len(word) for word in words[i:j+1]]) + j - i # 줄의 길이를 계산하여 줄에있는 각 단어의 길이를 합하고 그 사이의 공백 수를 추가
@@ -89,13 +99,3 @@ def word_wrap(words, L):
 ```
 
 이 구현의 시간 복잡도는 O (n ^ 2)입니다. 이는 각 단어가 다른 모든 단어와 비교되기 때문입니다.
-
-```python
-assertword_wrap(['Hello', 'world,', 'how', 'are', 'you', 'doing', 'today?'], 15) == 25
-
-# 123456789012345
-# Hello world,___    --> 3*3 (3 공백 수)
-# how are you____    ---> 4*4 (4 공백 수)
-# doing today?___    ---> 0 (마지막 줄)
-
-```
