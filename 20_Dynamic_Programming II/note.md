@@ -192,6 +192,7 @@ def fib(n):
             return memo[n]
 
     result, parent = fib_helper(n)
+    # [None, None, (1, 1), (2, 1), (3, 1), (5, 1), (8, 1)]
     # 결과를 재구성
     fib_seq = [result]
     while parent is not None:
