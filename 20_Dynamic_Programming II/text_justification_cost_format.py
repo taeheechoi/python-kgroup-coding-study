@@ -38,7 +38,7 @@ def word_wrap(words, L):
 assert word_wrap(["This", "is", "a", "long", "sentence", "that", "should", "be", "wrapped"], 10) == (
     66, 'This is\na long\nsentence\nthat\nshould be\nwrapped\n')
 
-# 1st interation
+# 1st
 # n 9
 # i 8
 # j 8 
@@ -49,7 +49,7 @@ assert word_wrap(["This", "is", "a", "long", "sentence", "that", "should", "be",
 # cost [0]
 # dp [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-# 2nd integration
+# 2nd 
 # n 9
 # i 7
 # j 7 
@@ -59,3 +59,16 @@ assert word_wrap(["This", "is", "a", "long", "sentence", "that", "should", "be",
 # breaks [0, 0, 0, 0, 0, 0, 0, 8, 8]
 # cost [64, 0]
 # dp [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+....
+
+# Last
+# n 9
+# i 9
+# j 8 
+# L 10
+# length 6
+# words ['This', 'is', 'a', 'long', 'sentence', 'that', 'should', 'be', 'wrapped']
+# breaks [1, 3, 3, 3, 4, 5, 7, 8, 8]
+# cost [78, 66, 78, inf, inf, inf, inf, inf, inf]
+# dp [66, 42, 57, 77, 41, 37, 1, 0, 0, 0]
+# result 'This is\na long\nsentence\nthat\nshould be\nwrapped\n'
