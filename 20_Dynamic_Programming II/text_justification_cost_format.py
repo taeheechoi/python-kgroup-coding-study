@@ -59,7 +59,7 @@ assert word_wrap(["This", "is", "a", "long", "sentence", "that", "should", "be",
 # breaks [0, 0, 0, 0, 0, 0, 0, 8, 8]
 # cost [64, 0]
 # dp [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-....
+# ....
 
 # Last
 # n 9
