@@ -13,11 +13,11 @@ def compute_cost(words, i, j, L):
 
 def word_wrap(words, L):
     n = len(words)
-    dp = [0] * (n + 1)
-    breaks = [0] * n  # list to store the index of the first word in each line
+    dp = [0] * (n + 1) # [66, 42, 57, 77, 41, 37, 1, 0, 0, 0]
+    breaks = [0] * n  # list to store the index of the first word in each line [1, 3, 3, 3, 4, 5, 7, 8, 8]
 
     for i in range(n-1, -1, -1):
-        cost = [compute_cost(words, i, j, L) + dp[j+1] for j in range(i, n)]
+        cost = [compute_cost(words, i, j, L) + dp[j+1] for j in range(i, n)] # [78, 66, 78, inf, inf, inf, inf, inf, inf]
         dp[i] = min(cost)
 
         breaks[i] = i + cost.index(dp[i])
@@ -37,3 +37,25 @@ def word_wrap(words, L):
 # assert word_wrap(["test", "is"], 5) == (1, "test\nis\n")
 assert word_wrap(["This", "is", "a", "long", "sentence", "that", "should", "be", "wrapped"], 10) == (
     66, 'This is\na long\nsentence\nthat\nshould be\nwrapped\n')
+
+# 1st interation
+# n 9
+# i 8
+# j 8 
+# L 10
+# length 7
+# words wrapped
+# breaks [0, 0, 0, 0, 0, 0, 0, 0, 8]
+# cost [0]
+# dp [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+# 2nd integration
+# n 9
+# i 7
+# j 7 
+# L 10
+# length 6
+# words be wrapped
+# breaks [0, 0, 0, 0, 0, 0, 0, 8, 8]
+# cost [64, 0]
+# dp [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
