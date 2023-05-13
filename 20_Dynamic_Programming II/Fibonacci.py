@@ -21,17 +21,18 @@ def fib(n):
             return memo[n]
 
     result, parent = fib_helper(n)
-    print(result, parent, memo) # 8 1 [None, None, (1, 1), (2, 1), (3, 1), (5, 1), (8, 1)]
+    # print(result, parent, memo) # 8 1 [None, None, (1, 1), (2, 1), (3, 1), (5, 1), (8, 1)]
     #결과를 재구성
     fib_seq = [result]
     
     while parent is not None:
         fib_seq.append(parent)
-        result, parent = memo[parent][0], memo[parent][1]
+        if memo[parent] is not None and memo[parent][1] is not None:
+            result, parent = memo[parent][0], memo[parent][1]
+        else:
+            result, parent = 0, None
         fib_seq.append(result)
     # 재구성된 결과를 뒤집어서 반환
     return fib_seq[::-1]
-
-
 
 print(fib(6))
