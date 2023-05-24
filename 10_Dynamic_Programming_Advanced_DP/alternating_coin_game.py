@@ -8,12 +8,15 @@ def alternating_coin_game(coins):
             if i == j:
                 dp[i][j] = coins[i]
             else:
-                dp[i][j] = max(coins[i] - dp[i + 1][j], coins[j] - dp[i][j - 1])
+                dp[i][j] = max(
+                    coins[i] + min(dp[i + 2][j], dp[i + 1][j - 1]),
+                    coins[j] + min(dp[i][j - 2], dp[i + 1][j - 1])
+                )
 
     return dp[0][n - 1]
 
 
 # Example usage:
-coins = [8, 15, 3, 7]
+coins = [4, 42, 39, 19, 25, 6]
 game_result = alternating_coin_game(coins)
 print("Maximum total value of coins collected:", game_result)
